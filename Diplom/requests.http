@@ -1,0 +1,149 @@
+@baseurl = http://127.0.0.1:8000/api/v1
+@usertoken = Token 5acb8cc725e06e89396e9759260c0b52eb5649df
+@admintoken = Token 6f378199f0e9f4e8de27adc8a2b85e4e2040ed43
+
+GET {{baseurl}}/orders/
+Authorization: {{admintoken}}
+
+###
+
+GET {{baseurl}}/orders/
+Authorization: {{usertoken}}
+
+###
+
+GET {{baseurl}}/orders/2/
+Authorization: {{admintoken}}
+
+###
+
+GET {{baseurl}}/orders/1/
+Authorization: {{usertoken}}
+
+###
+
+GET {{baseurl}}/orders/2/
+Authorization: {{usertoken}}
+
+###
+
+POST {{baseurl}}/orders/
+Authorization: {{usertoken}}
+Content-Type: application/json
+
+{
+    "positions": [
+        {
+            "product_id": 3,
+            "quantity": 2
+        },
+        {
+            "product_id": 1,
+            "quantity": 1
+        }
+    ]
+}
+
+###
+
+PATCH {{baseurl}}/orders/2/
+Authorization: {{admintoken}}
+Content-Type: application/json
+
+{
+    "status": "DONE"
+}
+
+###
+
+DELETE {{baseurl}}/orders/1/
+Authorization: {{admintoken}}
+
+###
+
+GET {{baseurl}}/products/
+Authorization: {{admintoken}}
+
+###
+
+GET {{baseurl}}/products/1/
+Authorization: {{admintoken}}
+
+###
+
+GET {{baseurl}}/product-reviews/
+Authorization: {{admintoken}}
+
+###
+
+GET {{baseurl}}/product-reviews/2/
+Authorization: {{usertoken}}
+
+###
+
+PATCH {{baseurl}}/product-reviews/2/
+Authorization: {{usertoken}}
+Content-Type: application/json
+
+{
+    "rating": 5
+}
+
+###
+
+GET {{baseurl}}/product-collections/
+Authorization: {{admintoken}}
+
+###
+
+GET {{baseurl}}/product-collections/1/
+Authorization: {{admintoken}}
+
+###
+
+POST {{baseurl}}/product-reviews/
+Authorization: {{admintoken}}
+Content-Type: application/json
+
+{
+  "product_id": 3,
+  "text": "ТЕСТ!",
+  "rating": 5
+}
+
+###
+
+PATCH  {{baseurl}}/product-reviews/2/
+Authorization: {{usertoken}}
+Content-Type: application/json
+
+{
+  "text": "ТЕСТ!",
+  "rating": 5
+}
+
+###
+PATCH {{baseurl}}/products/1/
+Authorization: {{admintoken}}
+Content-Type: application/json
+
+{
+  "price": 1.00
+}
+
+###
+
+POST {{baseurl}}/product-collections/
+Authorization: {{admintoken}}
+Content-Type: application/json
+
+{
+        "title": "Тест",
+        "positions": [
+            {
+                "product_id": 1,
+                "quantity": 1
+            }
+        ],
+        "text": "ТЕСТ!"
+}
